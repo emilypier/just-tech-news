@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const bcrypt = require('bcrypt');
 
 //create our User model. User inherits all the functionality the Model class has.
 class User extends Model {}
@@ -38,6 +39,18 @@ User.init(
     }
   },
   {
+    hooks: {
+      // set up beforeCreate lifecycle "hook" functionality
+      async beforeCreate(newUserData) {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10); //passing a saltRound value of 10
+        return newUserData //returns the hashed password in newUserData function.
+      },
+      // set up beforeUpdate lifecycle "hook" functionality
+      async beforeUpdate(updatedUserData) {
+        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        return updatedUserData;
+      }
+    },
     // TABLE CONFIGURATION OPTIONS
     sequelize,     // pass in our imported sequelize connection (direct connection to database)
     timestamps: false,     // don't automatically create createdAt/updatedAt timestamp fields
