@@ -12,6 +12,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(routes);
 
 // turn on connection to db and server
-sequelize.sync({ force: false }).then(() => { //"sync" means that Sequelize is taking the models & connecting them to associated db tables. If it doesn't find a table, it'll create it
+sequelize.sync({ force: false }).then(() => { //If value of force property is true, it will make tables re-create if there are any association changes.
   app.listen(PORT, () => console.log('Now listening'));
 });
