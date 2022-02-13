@@ -20,8 +20,8 @@ A website/application that offers/uses
 Clone this GitHub repository and install Node.js and Express.js.
 
 ## Usage
-
-![Image of Note Taker app in action.](/docs/assets/note-taker-image.png)
+[Link]https://warm-lake-26899.herokuapp.com/ to the deployed application.
+![Image of Just Tech News in action.](.png)
 
 
 ## License
